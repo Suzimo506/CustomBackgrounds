@@ -41,17 +41,24 @@ namespace Suzimo.MuseDashMods.CustomBackgrounds
     {
         private static void Postfix(Il2CppAssets.Scripts.UI.Panels.PnlMenu __instance)
         {
-            var loader = UnityEngine.Object.FindObjectOfType<Il2CppAssets.Scripts.UI.StageBackground.LobbyBackgroundLoader>();
-            if (loader != null)
+            var standerd = __instance.transform.name == "Standerd" ? __instance.transform : __instance.transform.parent;
+            var bgTransform = standerd.Find("Bg");
+            
+            if (bgTransform == null)
             {
-                var bgTransform = loader.transform.parent;
-                // Move Bg out of PnlMenu and into the common parent (UI/Standerd)
-                if (bgTransform != null && bgTransform.name == "Bg" && bgTransform.parent != null && bgTransform.parent.name == "PnlHome")
+                var pnlHome = standerd.Find("PnlHome");
+                if (pnlHome != null) bgTransform = pnlHome.Find("Bg");
+            }
+
+            if (bgTransform != null)
+            {
+                if (bgTransform.parent != null && bgTransform.parent.name == "PnlHome")
                 {
-                    bgTransform.SetParent(bgTransform.parent.parent, true);
-                    bgTransform.SetAsFirstSibling();
-                    MelonLogger.Msg("Moved Bg out of PnlMenu to UI/Standerd.");
+                    bgTransform.SetParent(standerd, true);
                 }
+                
+                bgTransform.SetAsFirstSibling();
+                bgTransform.gameObject.SetActive(true);
             }
         }
     }
@@ -61,16 +68,24 @@ namespace Suzimo.MuseDashMods.CustomBackgrounds
     {
         private static void Postfix(PnlStage __instance)
         {
-            var loader = UnityEngine.Object.FindObjectOfType<Il2CppAssets.Scripts.UI.StageBackground.LobbyBackgroundLoader>();
-            if (loader != null)
+            var standerd = __instance.transform.name == "Standerd" ? __instance.transform : __instance.transform.parent;
+            var bgTransform = standerd.Find("Bg");
+            
+            if (bgTransform == null)
             {
-                var bgTransform = loader.transform.parent;
-                if (bgTransform != null && bgTransform.name == "Bg" && bgTransform.parent != null && bgTransform.parent.name == "PnlHome")
+                var pnlHome = standerd.Find("PnlHome");
+                if (pnlHome != null) bgTransform = pnlHome.Find("Bg");
+            }
+
+            if (bgTransform != null)
+            {
+                if (bgTransform.parent != null && bgTransform.parent.name == "PnlHome")
                 {
-                    bgTransform.SetParent(bgTransform.parent.parent, true);
-                    bgTransform.SetAsFirstSibling();
-                    MelonLogger.Msg("Moved Bg out of PnlMenu to UI/Standerd from PnlStage.");
+                    bgTransform.SetParent(standerd, true);
                 }
+                
+                bgTransform.SetAsFirstSibling();
+                bgTransform.gameObject.SetActive(true);
             }
 
             // Hide the default purple background of PnlStage itself so the Bg behind it shows through
@@ -78,7 +93,7 @@ namespace Suzimo.MuseDashMods.CustomBackgrounds
             if (pnlStageImg != null) 
             {
                 pnlStageImg.enabled = false;
-                MelonLogger.Msg("Disabled PnlStage default background Image.");
+                pnlStageImg.color = new UnityEngine.Color(0, 0, 0, 0); // Force invisible
             }
         }
     }
