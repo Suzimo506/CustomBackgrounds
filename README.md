@@ -17,7 +17,7 @@
 - **极度轻量且原生**：通过 Harmony 拦截代码动态修改图层，纯代码实现，无冗余资源，运行丝滑。
 
 ### 安装方法
-1. 确保你的游戏已经安装了最新的 [MelonLoader](https://melonwiki.xyz/#/)。
+1. 确保你的游戏已经安装了 [MelonLoader](https://melonwiki.xyz/#/)。
 2. 在 [Releases] 页面下载最新版本的 `CustomBackgrounds.dll`。
 3. 将下载的 `CustomBackgrounds.dll` 放入游戏根目录的 `Mods` 文件夹中。
 4. 启动游戏即可生效！
@@ -37,7 +37,7 @@ In the vanilla game, the beautiful native background you select on the Home scre
 - **Lightweight & Native**: Utilizes Harmony patches to dynamically adjust parent transforms at runtime. Pure code implementation, zero bloat, runs smoothly.
 
 ### Installation
-1. Ensure you have the latest [MelonLoader](https://melonwiki.xyz/#/) installed for your game.
+1. Ensure you have [MelonLoader](https://melonwiki.xyz/#/) installed for your game.
 2. Download the latest `CustomBackgrounds.dll` from the Releases page.
 3. Place the downloaded `CustomBackgrounds.dll` into the `Mods` folder located in your game's root directory.
 4. Launch the game and enjoy!
