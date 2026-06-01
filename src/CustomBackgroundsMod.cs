@@ -97,4 +97,46 @@ namespace Suzimo.MuseDashMods.CustomBackgrounds
             }
         }
     }
+
+    [HarmonyPatch(typeof(PnlTroves), nameof(PnlTroves.OnEnable))]
+    internal class PnlTrovesEnablePatch
+    {
+        private static void Postfix(PnlTroves __instance)
+        {
+            var standerd = UIUtils.FindStanderd(__instance.transform);
+            var bgTransform = standerd?.Find("Bg");
+            if (bgTransform != null)
+            {
+                bgTransform.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(PnlTroves), nameof(PnlTroves.OnDisable))]
+    internal class PnlTrovesDisablePatch
+    {
+        private static void Postfix(PnlTroves __instance)
+        {
+            var standerd = UIUtils.FindStanderd(__instance.transform);
+            var bgTransform = standerd?.Find("Bg");
+            if (bgTransform != null)
+            {
+                bgTransform.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public static class UIUtils
+    {
+        public static Transform? FindStanderd(Transform transform)
+        {
+            var current = transform;
+            while (current != null)
+            {
+                if (current.name == "Standerd") return current;
+                current = current.parent;
+            }
+            return null;
+        }
+    }
 }

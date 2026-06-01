@@ -21,6 +21,10 @@
       <HintPath>E:\SteamLibrary\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Il2CppSirenix.Serialization">
+      <HintPath>E:\SteamLibrary\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>E:\SteamLibrary\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
